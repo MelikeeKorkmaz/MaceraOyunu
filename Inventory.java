@@ -1,14 +1,26 @@
 public class Inventory {
-    boolean water;
-    boolean food;
-    boolean firewood;
-    String weaponName;
-    int weaponDamage;
-    int armorDefence;
+    Weapon weapon;
+    Armor armor;
 
-    Inventory(String weaponName, int weaponDamage, int armorDefence){
-        this.weaponName = weaponName;
-        this.weaponDamage = weaponDamage;
-        this.armorDefence = armorDefence;
+    Inventory() {
+        this.weapon = new Weapon(0, "Yumruk", 0, 0);
+        this.armor = new Armor(0, "Kıyafet", 0, 0);
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
     }
 }
+
