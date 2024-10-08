@@ -1,8 +1,13 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
+
 public class Player {
-    GameChar gameChar;
-    String charName;
-    String name;
+    private GameChar gameChar;
+    private Location loc;
+    private Inventory inventory;
+    private String charName;
+    private String name;
     private int health;
     private int damage;
     private int money;
@@ -10,40 +15,60 @@ public class Player {
 
     Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
     }
 
-    public void selectChar(){
-        //If you want to create a new character, create a new object and add it to the chars list.
-        GameChar samurai = new GameChar("Samuray", 0, 21, 5, 15);
-        GameChar archer = new GameChar("Okçu", 1, 18, 7, 20);
-        GameChar knight = new GameChar("Şovalye", 2, 24, 8, 5);
-        GameChar[] chars = {samurai, archer, knight};
+    public void selectChar() {
+        GameChar[] chars = {new Samurai(), new Archer(), new Knight()};
 
-        System.out.println("-----------------\nOYUN KARAKTERLERİ");
+        System.out.println("================================================\nOYUN KARAKTERLERİ");
         charList(chars);
-        System.out.println("-----------------");
+        System.out.println("================================================");
 
         System.out.print("Seçtiğiniz karakterin ID'sini girin: ");
         int select = input.nextInt();
-        if(select < chars.length && select >= 0) {
-            this.gameChar = chars[select];
+        if (select <= chars.length && select > 0) {
+            this.gameChar = chars[select - 1];
             setProperties(this.gameChar);
-        }else{
+        } else {
             System.out.println("Yanlış ID girişi yaptınız. Sistem otomatik olarak Samuray karakteri seçmiştir.");
-            setProperties(samurai);
+            setProperties(new Samurai());
         }
         printInfo();
     }
 
-    public void charList(GameChar[] c){
-        for(GameChar i: c){
-            i.printCharInfo();
-        }
+    public void selectLoc(Location[] locations) {
+        while (loc.onLocation()) {
+            System.out.println("\n========================");
+            System.out.println("Harita yükleniyor...");
+            //Gidilebilecek yerler listelenip yazdırılabilir mi ?
+            System.out.println("Güvenli Bölgeler----> Bu alanlarda düşman yok" +
+                    "\n\t1- Güvenli ev - Sağlığınız yenilenir.\n\t2- Mağaza - Yeni teçhizatlar alabilirsiniz.");
+            System.out.println("Savaş Bölgeleri----> Düşmanlarla savaşıp item ve para kazanabilirsiniz." +
+                    "\n\t3- Orman - Vampir bölgesi.\n\t4- Nehir - Ayı bölgesi.\n\t5- Mağara - Zombi bölgesi");
 
+            System.out.print("Gitmek istediğiniz bölgenin numarasını girin: ");
+            int area = input.nextInt();
+            if (area <= locations.length && area > 0) {
+                this.loc = locations[area - 1];
+            } else {
+                System.out.println("Girdiğiniz bölge numarası yanlış. Güvenli eve yönlendiriliyorsunuz.");
+                this.loc = locations[0];
+            }
+            System.out.println("========================");
+        }
+        if (!loc.onLocation()) {
+            System.out.println("GAME OVER");
+        }
     }
 
-    public void setProperties(GameChar c){
-        this.gameChar = c;
+    public void charList(GameChar[] c) {
+        for (GameChar i : c) {
+            i.printCharInfo();
+        }
+    }
+
+    public void setProperties(GameChar c) {
         this.charName = c.getCharName();
         this.money = c.getMoney();
         this.damage = c.getDamage();
@@ -51,7 +76,45 @@ public class Player {
     }
 
     public void printInfo() {
-        System.out.println("Oyuncu: " + this.name + "\tKarakter: " + this.charName + "\tSağlık: " + this.health + "\tHasar: " + this.damage + "\tPara: " + this.money);
+        System.out.println("Oyuncu: " + this.name +
+                "\tKarakter: " + this.charName +
+                "\tSağlık: " + this.health +
+                "\tHasar: " + this.damage +
+                "\tSilah: " + this.inventory.getWeapon().getName() +
+                "\tArmor: " + this.inventory.getArmor().getName() +
+                "\tPara: " + this.money);
+    }
+
+    public GameChar getGameChar() {
+        return gameChar;
+    }
+
+    public void setGameChar(GameChar gameChar) {
+        this.gameChar = gameChar;
+    }
+
+    public Location getLoc() {
+        return loc;
+    }
+
+    public void setLoc(Location loc) {
+        this.loc = loc;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public String getCharName() {
+        return charName;
+    }
+
+    public void setCharName(String charName) {
+        this.charName = charName;
     }
 
     public String getName() {
