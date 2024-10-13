@@ -1,5 +1,5 @@
 public class Zombie extends Obstacle{
     Zombie(){
-        super(1, "Zombi",10, 3 );
+        super(1, "Zombi", 12, 4, 3);
     }
 }
