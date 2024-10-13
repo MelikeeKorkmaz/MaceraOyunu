@@ -4,8 +4,8 @@ public class Player {
     private GameChar gameChar;
     private Location loc;
     private Inventory inventory;
-    private String charName;
     private String name;
+    private String charName;
     private int health;
     private int damage;
     private int money;
@@ -16,17 +16,15 @@ public class Player {
         this.inventory = new Inventory();
     }
 
-    public void selectChar() {
-        GameChar[] chars = {new Samurai(), new Archer(), new Knight()};
-
+    public void selectChar(GameChar[] list) {
         System.out.println("================================================\nOYUN KARAKTERLERİ");
-        printCharList(chars);
+        printCharList(list);
         System.out.println("================================================");
 
         System.out.print("Seçtiğiniz karakterin ID'sini girin: ");
         int select = input.nextInt();
-        if (select <= chars.length && select > 0) {
-            this.gameChar = chars[select - 1];
+        if (select <= list.length && select > 0) {
+            this.gameChar = list[select - 1];
             setProperties(this.gameChar);
         } else {
             System.out.println("Yanlış ID girişi yaptınız. Sistem otomatik olarak Samuray karakteri seçmiştir.");
@@ -37,13 +35,7 @@ public class Player {
 
     public void selectLoc(Location[] locations) {
         while (loc.onLocation()) {
-            System.out.println("\n========================");
-            System.out.println("Harita yükleniyor...");
-
-            for(int i = 0 ; i < locations.length ; i++){
-                System.out.println(i+1 + "- " + locations[i].getLocName());
-            }
-
+            printMap(locations);
             System.out.print("Gitmek istediğiniz bölgenin numarasını girin: ");
             int area = input.nextInt();
             if (area <= locations.length && area > 0) {
@@ -53,6 +45,14 @@ public class Player {
                 this.loc = locations[0];
             }
             System.out.println("========================");
+        }
+    }
+    
+    public void printMap(Location[] locations){
+        System.out.println("\n========================");
+        System.out.println("Harita yükleniyor...");
+        for(int i = 0 ; i < locations.length ; i++){
+            System.out.println(i+1 + "- " + locations[i].getLocName());
         }
     }
 
@@ -75,7 +75,7 @@ public class Player {
                 "\tSağlık: " + this.health +
                 "\tHasar: " + this.damage +
                 "\tSilah: " + this.inventory.getWeapon().getName() +
-                "\tArmor: " + this.inventory.getArmor().getName() + " Koruma: " + this.inventory.getArmor().getProtection() +
+                "\tArmor: " + this.inventory.getArmor().getName() + " Armor Koruması: " + this.inventory.getArmor().getProtection() +
                 "\tPara: " + this.money);
     }
 
