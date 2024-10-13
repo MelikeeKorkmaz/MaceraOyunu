@@ -3,12 +3,14 @@ public abstract class Obstacle {
     private String name;
     private int health;
     private int damage;
+    private int money;
 
-    Obstacle(int id ,String name, int health, int damage){
+    Obstacle(int id ,String name, int health, int damage, int money){
         this.id = id;
         this.name = name;
         this.health = health;
         this.damage = damage;
+        this.money = money;
     }
 
     public void printObsInfo(){
@@ -47,4 +49,11 @@ public abstract class Obstacle {
         this.damage = damage;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 }
