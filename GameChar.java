@@ -21,6 +21,10 @@ public abstract class GameChar {
         return this.charName;
     }
 
+    public void setCharName(String charName){
+        this.charName = charName;
+    }
+
     public int getMoney() {
         return money;
     }
@@ -51,9 +55,5 @@ public abstract class GameChar {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCharName(String charName){
-        this.charName = charName;
     }
 }
