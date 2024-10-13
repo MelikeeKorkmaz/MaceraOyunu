@@ -4,8 +4,11 @@ Oyunu kazanmak için savaş bölgelerinde bulunan canavarları yok ederek ödül
 OYUN KARAKTERLERİ
 -----------------
 ID	İSİM	SAĞLIK	HASAR	PARA
+-
 1	Samuray	18	    4	    15
+-
 2	Okçu	15	    5	    20
+-
 3	Şövalye	20	    4	    10
 
 SİLAHLAR
