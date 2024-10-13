@@ -1,5 +1,5 @@
 public abstract class NormalLoc extends Location{
-    public NormalLoc(String locName){
+    public NormalLoc(){
         super();
     }
 
