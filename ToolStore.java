@@ -1,27 +1,28 @@
 public class ToolStore extends NormalLoc {
-    Player player;
     Weapon[] weapons = {new Weapon(1,"Tabanca",2,25), new Weapon(2,"Kılıç",3,35),new Weapon(3,"Tüfek",7,45)};
     Armor[] armors = {new Armor(1, "Light",1,15),new Armor(2,"Medium",3,25),new Armor(3,"Heavy",5,40)};
 
     public ToolStore(Player player) {
-        super("Mağaza");
-        this.player = player;
+        super();
+        setLocName("Mağaza");
+        setPlayer(player);
     }
 
     @Override
     public boolean onLocation() {
         System.out.println("Mağazaya hoş geldiniz!");
-        System.out.println("Burada kendinize silah veya armor alabilirsiniz.");
+        System.out.println("Burada kendinize yeni teçhizatlar alabilirsiniz.");
+        getPlayer().printInfo();
 
         System.out.println("----MENU----");
         System.out.print("1-Silahlar\n2-Armorlar\nÇıkış için herhangi bir sayıyı girebilirsiniz.\nMenüde gitmek istediğiniz yeri tuşlayın: ");
-        //dikkat
+
         int select = input.nextInt();
         System.out.println("========================");
         buyTool(select);
 
         System.out.println("----Mağazadan ayrıldınız. Yeniden görüşmek üzere.----");
-        this.player.printInfo();
+        getPlayer().printInfo();
         return true;
     }
 
@@ -33,13 +34,13 @@ public class ToolStore extends NormalLoc {
                 int c1 = input.nextInt();
                 System.out.println("========================");
                 if(c1 <= weapons.length && c1 > 0) {
-                    if (weapons[c1-1].getCost() > this.player.getMoney()) {
+                    if ((getPlayer().getMoney()-weapons[c1-1].getCost()) < 0) {
                         System.out.println(weapons[c1-1].getName() + " almak için yeterli paranız bulunmamaktadır!");
                     } else {
                         System.out.println(weapons[c1-1].getName() + " satın alma işlemi başarı ile gerçekleşmiştir.");
-                        this.player.setMoney(this.player.getMoney()-weapons[c1-1].getCost());
-                        this.player.getInventory().setWeapon(weapons[c1-1]);
-                        this.player.setDamage(this.player.getGameChar().getDamage() + weapons[c1-1].getDamage());
+                        getPlayer().setMoney(getPlayer().getMoney()-weapons[c1-1].getCost());
+                        getPlayer().getInventory().setWeapon(weapons[c1-1]);
+                        getPlayer().setDamage(getPlayer().getGameChar().getDamage() + weapons[c1-1].getDamage());
                     }
                 }
                 break;
@@ -49,12 +50,12 @@ public class ToolStore extends NormalLoc {
                 int c2 = input.nextInt();
                 System.out.println("========================");
                 if(c2 <= armors.length && c2 > 0) {
-                    if (armors[c2-1].getCost() > this.player.getMoney()) {
+                    if ((getPlayer().getMoney()-armors[c2-1].getCost()) < 0) {
                         System.out.println(armors[c2-1].getName() + " armoru almak için yeterli paranız bulunmamaktadır!");
                     } else {
                         System.out.println(armors[c2-1].getName() + " satın alma işlemi başarı ile gerçekleşmiştir.");
-                        this.player.setMoney(this.player.getMoney()-weapons[c2-1].getCost());
-                        this.player.getInventory().setArmor(armors[c2-1]);
+                        getPlayer().setMoney(getPlayer().getMoney() - armors[c2-1].getCost());
+                        getPlayer().getInventory().setArmor(armors[c2-1]);
                     }
                 }
                 break;
