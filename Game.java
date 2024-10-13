@@ -19,6 +19,5 @@ public class Game {
         Location[] locations = {new SafeHouse(n1), new ToolStore(n1),  new Cave(n1), new Forest(n1), new River(n1)};
         n1.setLoc(locations[0]);
         n1.selectLoc(locations);
-
     }
 }
