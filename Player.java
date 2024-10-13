@@ -47,7 +47,7 @@ public class Player {
             System.out.println("========================");
         }
     }
-    
+
     public void printMap(Location[] locations){
         System.out.println("\n========================");
         System.out.println("Harita yükleniyor...");
@@ -75,7 +75,8 @@ public class Player {
                 "\tSağlık: " + this.health +
                 "\tHasar: " + this.damage +
                 "\tSilah: " + this.inventory.getWeapon().getName() +
-                "\tArmor: " + this.inventory.getArmor().getName() + " Armor Koruması: " + this.inventory.getArmor().getProtection() +
+                "\tArmor: " + this.inventory.getArmor().getName() +
+                "\tArmor Koruması: " + this.inventory.getArmor().getProtection() +
                 "\tPara: " + this.money);
     }
 
