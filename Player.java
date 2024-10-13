@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Scanner;
 
 public class Player {
@@ -22,7 +20,7 @@ public class Player {
         GameChar[] chars = {new Samurai(), new Archer(), new Knight()};
 
         System.out.println("================================================\nOYUN KARAKTERLERİ");
-        charList(chars);
+        printCharList(chars);
         System.out.println("================================================");
 
         System.out.print("Seçtiğiniz karakterin ID'sini girin: ");
@@ -41,11 +39,10 @@ public class Player {
         while (loc.onLocation()) {
             System.out.println("\n========================");
             System.out.println("Harita yükleniyor...");
-            //Gidilebilecek yerler listelenip yazdırılabilir mi ?
-            System.out.println("Güvenli Bölgeler----> Bu alanlarda düşman yok" +
-                    "\n\t1- Güvenli ev - Sağlığınız yenilenir.\n\t2- Mağaza - Yeni teçhizatlar alabilirsiniz.");
-            System.out.println("Savaş Bölgeleri----> Düşmanlarla savaşıp item ve para kazanabilirsiniz." +
-                    "\n\t3- Orman - Vampir bölgesi.\n\t4- Nehir - Ayı bölgesi.\n\t5- Mağara - Zombi bölgesi");
+
+            for(int i = 0 ; i < locations.length ; i++){
+                System.out.println(i+1 + "- " + locations[i].getLocName());
+            }
 
             System.out.print("Gitmek istediğiniz bölgenin numarasını girin: ");
             int area = input.nextInt();
@@ -57,12 +54,9 @@ public class Player {
             }
             System.out.println("========================");
         }
-        if (!loc.onLocation()) {
-            System.out.println("GAME OVER");
-        }
     }
 
-    public void charList(GameChar[] c) {
+    public void printCharList(GameChar[] c) {
         for (GameChar i : c) {
             i.printCharInfo();
         }
@@ -81,7 +75,7 @@ public class Player {
                 "\tSağlık: " + this.health +
                 "\tHasar: " + this.damage +
                 "\tSilah: " + this.inventory.getWeapon().getName() +
-                "\tArmor: " + this.inventory.getArmor().getName() +
+                "\tArmor: " + this.inventory.getArmor().getName() + " Koruma: " + this.inventory.getArmor().getProtection() +
                 "\tPara: " + this.money);
     }
 
