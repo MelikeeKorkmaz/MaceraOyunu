@@ -11,8 +11,7 @@ public class Player {
     private int money;
     Scanner input = new Scanner(System.in);
 
-    Player(String name) {
-        this.name = name;
+    Player() {
         this.inventory = new Inventory();
     }
 
