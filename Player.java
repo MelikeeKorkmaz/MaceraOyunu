@@ -47,11 +47,11 @@ public class Player {
         }
     }
 
-    public void printMap(Location[] locations){
+    public void printMap(Location[] locations) {
         System.out.println("\n========================");
         System.out.println("Harita yükleniyor...");
-        for(int i = 0 ; i < locations.length ; i++){
-            System.out.println(i+1 + "- " + locations[i].getLocName());
+        for (int i = 0; i < locations.length; i++) {
+            System.out.println(i + 1 + "- " + locations[i].getLocName());
         }
     }
 
