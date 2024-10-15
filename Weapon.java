@@ -4,7 +4,7 @@ public class Weapon {
     private int damage;
     private int cost;
 
-    Weapon(int id, String name, int damage, int cost){
+    Weapon(int id, String name, int damage, int cost) {
         this.id = id;
         this.name = name;
         this.damage = damage;
