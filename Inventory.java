@@ -1,6 +1,6 @@
 public class Inventory {
-    Weapon weapon;
-    Armor armor;
+    private Weapon weapon;
+    private Armor armor;
     private boolean food;
     private boolean water;
     private boolean firewood;
