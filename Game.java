@@ -17,7 +17,7 @@ public class Game {
         System.out.println("Sıra karakterde... Nasıl bir karakter oynamak isterdin? ");
         n1.selectChar(chars);
 
-        Location[] locations = {new SafeHouse(n1), new ToolStore(n1),  new Cave(n1), new Forest(n1), new River(n1)};
+        Location[] locations = {new SafeHouse(n1), new ToolStore(n1), new Cave(n1), new Forest(n1), new River(n1)};
         n1.setLoc(locations[0]);
         n1.selectLoc(locations);
     }
