@@ -10,7 +10,8 @@ public class Game {
         System.out.println("    ...    ");
         System.out.print("Karakter adınızı girin: ");
         String name = input.nextLine();
-        Player n1 = new Player(name);
+        Player n1 = new Player();
+        n1.setName(name);
 
         GameChar[] chars = {new Samurai(), new Archer(), new Knight()};
         System.out.println("Sıra karakterde... Nasıl bir karakter oynamak isterdin? ");
