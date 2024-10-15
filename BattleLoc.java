@@ -3,15 +3,34 @@ import java.util.Random;
 
 public abstract class BattleLoc extends Location {
     private Obstacle obstacle;
+    private String itemName;
     private int obsCount = 0;
     private int count;
     private int obsHealth;
+
     public Scanner input = new Scanner(System.in);
     public Random r = new Random();
 
     BattleLoc() {
         super();
         setLocName("Savaş Bölgeleri");
+    }
+
+    public boolean onLocation() {
+        System.out.println("---" + getLocName() + "---");
+        System.out.println("Bu bölgeyi yaratıklardan temizleyebilirsen, karşılığında bir miktar para ve " + getItemName() + " alacaksın.");
+        start();
+        if (getPlayer().getHealth() > 0 && getCount() == 0) {
+            System.out.println("Tebrikler! " + getObstacle().getName() + " yok edildi. Bölge temizlendi");
+            itemReward();
+            if (isWin()) {
+                return false;
+            }
+        } else if (getPlayer().getHealth() <= 0) {
+            System.out.println("Öldünüz!\n----GAME OVER----");
+            return false;
+        }
+        return true;
     }
 
     public void obsCounter() {
@@ -51,7 +70,7 @@ public abstract class BattleLoc extends Location {
         if (this.obstacle.getHealth() <= 0) {
             this.count--;
             System.out.println(this.obstacle.getName() + " öldü.\tKalan " + this.obstacle.getName() + " Sayısı: " + this.count);
-            prize();
+            moneyReward();
             System.out.println(this.obstacle.getMoney() + " dolar kazandınız. Güncel bakiyeniz: " + getPlayer().getMoney());
             this.obstacle.setHealth(this.obsHealth);
 
@@ -76,8 +95,19 @@ public abstract class BattleLoc extends Location {
         return true;
     }
 
-    public void prize() {
+    public void moneyReward() {
         getPlayer().setMoney(getPlayer().getMoney() + this.obstacle.getMoney());
+    }
+
+    public void itemReward() {
+        if (getLocName().equals("Orman")) {
+            getPlayer().getInventory().setFirewood(true);
+        } else if (getLocName().equals("Nehir")) {
+            getPlayer().getInventory().setWater(true);
+        } else if (getLocName().equals("Mağara")) {
+            getPlayer().getInventory().setFood(true);
+        }
+        System.out.println("Envanterine " + getItemName() + " eklendi");
     }
 
     public Obstacle getObstacle() {
@@ -86,6 +116,14 @@ public abstract class BattleLoc extends Location {
 
     public void setObstacle(Obstacle obstacle) {
         this.obstacle = obstacle;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public int getObsCount() {
