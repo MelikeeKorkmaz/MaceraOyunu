@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class BattleLoc extends Location {
+public abstract class BattleLoc extends Location {
     private Obstacle obstacle;
     private int obsCount = 0;
     private int count;
