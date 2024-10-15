@@ -14,11 +14,6 @@ public class BattleLoc extends Location {
         setLocName("Savaş Bölgeleri");
     }
 
-    @Override
-    public boolean onLocation() {
-        return true;
-    }
-
     public void obsCounter() {
         while (this.count == 0) {
             this.obsCount = r.nextInt(4);
