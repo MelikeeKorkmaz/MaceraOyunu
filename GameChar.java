@@ -5,7 +5,7 @@ public abstract class GameChar {
     private int damage;
     private int money;
 
-    GameChar(String charName, int id, int health, int damage, int money){
+    GameChar(String charName, int id, int health, int damage, int money) {
         this.charName = charName;
         this.id = id;
         this.health = health;
@@ -13,15 +13,15 @@ public abstract class GameChar {
         this.money = money;
     }
 
-    public void printCharInfo(){
+    public void printCharInfo() {
         System.out.println("ID: " + this.id + "\tKarakter: " + this.charName + "\tSağlık: " + this.health + "\tHasar: " + this.damage + "\tPara: " + this.money);
     }
 
-    public String getCharName(){
+    public String getCharName() {
         return this.charName;
     }
 
-    public void setCharName(String charName){
+    public void setCharName(String charName) {
         this.charName = charName;
     }
 
