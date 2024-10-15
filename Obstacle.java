@@ -5,7 +5,7 @@ public abstract class Obstacle {
     private int damage;
     private int money;
 
-    Obstacle(int id ,String name, int health, int damage, int money){
+    Obstacle(int id, String name, int health, int damage, int money) {
         this.id = id;
         this.name = name;
         this.health = health;
@@ -13,23 +13,23 @@ public abstract class Obstacle {
         this.money = money;
     }
 
-    public void printObsInfo(){
+    public void printObsInfo() {
         System.out.println(getName() + ":\tSağlık: " + getHealth() + "\tHasar: " + getDamage());
     }
 
-    public int getId(){
-       return id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
