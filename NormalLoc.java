@@ -5,6 +5,7 @@ public abstract class NormalLoc extends Location{
 
     @Override
     public boolean onLocation(){
+        System.out.println("Güvenli Bölgeler");
         return true;
     }
 }
