@@ -30,4 +30,9 @@ public class Game {
         n1.setLoc(locations[0]);
         n1.selectLoc(locations);
     }
+
+    public static void main(String[] args) {
+        Game g1 = new Game();
+        g1.start();
+    }
 }
