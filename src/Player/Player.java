@@ -80,8 +80,8 @@ public class Player {
                 "\tSağlık: " + this.health +
                 "\tHasar: " + this.damage +
                 "\tSilah: " + this.inventory.getWeapon().getName() +
-                "\tLocations.Stores.Armor: " + this.inventory.getArmor().getName() +
-                "\tLocations.Stores.Armor Koruması: " + this.inventory.getArmor().getProtection() +
+                "\tArmor: " + this.inventory.getArmor().getName() +
+                "\tArmor Koruması: " + this.inventory.getArmor().getProtection() +
                 "\tPara: " + this.money);
     }
 
